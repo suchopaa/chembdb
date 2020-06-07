@@ -1,0 +1,271 @@
+{% extends "web/base_help.html" %}
+{% block content%}
+<script>
+function search_help_receptor() {
+	x = document.getElementById("search_help_receptor")
+	if (x.style.display == "none"){
+		search_help_close();
+		x.style.display = "block";	
+	}else{
+		x.style.display = "none";
+	}   
+}
+function search_help_ligand() {
+        x = document.getElementById("search_help_ligand")
+        if (x.style.display == "none"){
+		search_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function search_help_physical_quantity() {
+        x = document.getElementById("search_help_physical_quantity")
+        if (x.style.display == "none"){
+                search_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function search_help_value() {
+        x = document.getElementById("search_help_value")
+        if (x.style.display == "none"){
+                search_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function search_help_confidence_score() {
+        x = document.getElementById("search_help_confidence_score")
+        if (x.style.display == "none"){
+                search_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function search_help_no_metals() {
+        x = document.getElementById("search_help_no_metals")
+        if (x.style.display == "none"){
+                search_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function search_help_source() {
+        x = document.getElementById("search_help_source")
+        if (x.style.display == "none"){
+                search_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function search_help_close(){
+	document.getElementById("search_help_receptor").style.display = "none";
+	document.getElementById("search_help_ligand").style.display = "none";
+	document.getElementById("search_help_physical_quantity").style.display = "none";
+	document.getElementById("search_help_value").style.display = "none";
+	document.getElementById("search_help_confidence_score").style.display = "none";
+	document.getElementById("search_help_no_metals").style.display = "none";
+	document.getElementById("search_help_source").style.display = "none";
+}
+</script>
+<h5>About the search form</h5>
+<p>This is the search form of Database of Biological Activity of Nuclear Receptors.  
+</p>
+<p>
+This is what the search form should look like.<br>Click the part of the search form to display further information.
+</p>
+<div class="container-fluid">
+<div class="row">
+	<div class="col-5">
+		<img src="/static/web/about/search/receptor.jpg" onclick="search_help_receptor()" style="cursor:pointer" width="100%">
+	</div>
+	<div class="col-7">
+		<img src="/static/web/about/search/ligand_exact.jpg" onclick="search_help_ligand()" style="cursor:pointer" width="100%">
+	</div>
+</div>
+<div class="bg-light" id="search_help_receptor" style="display:none;">
+	<h6>Receptor</h6>
+	<p>It is possible to select one or more receptors. To select/deselect more receptors hold the CTRL key.</p>
+	<p>If no receptors are selected by hand, the database will automatically search for all the receptors available.</p>   
+</div>
+<div class="bg-light" id="search_help_ligand" style="display:none;">
+	<h6>Ligand</h6>
+	<p>Ligands can be searched using SMILES or InChI. SMILES must follow the rules for <a href="https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system" target="_blank">SMILES format</a>. InChI must follow the rules for <a href="https://en.wikipedia.org/wiki/International_Chemical_Identifier" target="_blank">InChi format</a>.</p>
+	<p>It is possible to draw a ligand using Ketcher. To show or hide Ketcher click the "Show/Hide sKetcher" button.<br>When using Ketcher, follow these steps:
+		<ol>
+                <li>Draw your ligand</li>
+                <li>Click the Save button (the image of floppy disk)</li>
+                <li>Check SMILES of your ligand</li>
+                <li>Click the "Apply" button to copy the SMILES into the form</li>
+                </ol>
+	The SMILES will be applied to the ligand search bar. The drawn ligand that is not applied into the ligand search bar will NOT be used. The data will be searched using only the applied ligand. And therefore any changes made to the ligand in Ketcher will not be used unless applied again.</p>   
+	   
+	<p>If no ligand is written/applied, the database will automatically search for all the ligands available.</p>
+	<p>It is possible to use either <i>exact search</i> or <i>similarity search</i>. In case of <i>similarity search</i>, a search bar for Tanimoto coefficient will appear.
+	<img class="rounded mx-auto d-block" src="/static/web/about/search/ligand_similar.jpg" width="60%">
+	The higher Tanimoto is, the more similar ligands will be searched. Morgan fingerprint is used for making fingerprints. 	
+	</p>   
+</div>
+
+
+
+
+<img src="/static/web/about/search/break.jpg" width="100%">
+<div class="row">
+        <div class="col-4">
+                <img src="/static/web/about/search/physical_quantity.jpg" onclick="search_help_physical_quantity()" style="cursor:pointer" width="100%">
+        </div>
+        <div class="col-8">
+                <img src="/static/web/about/search/is_any.jpg" onclick="search_help_value()" style="cursor:pointer" width="100%">
+        </div>
+</div>
+<div class="bg-light" id="search_help_physical_quantity" style="display:none;">
+	<h6>Physical quantity</h6>
+	<p>It is possible to select one or more physical quantities. To select/deselect more physical quantities hold the CTRL key.</p>
+	<p>If no physical quantities are selected by hand, the database will automatically search for all the physical quantities available.</p>
+</div>
+<div class="bg-light" id="search_help_value" style="display:none;">
+	<h6>Value</h6>
+	<ol type="A">
+	<li> <b>Option "any":</b>
+		<p>In this case,  the database will automatically search for all the values available.</p>
+	</li>
+	<li> <b>Options "equal to", "greater than", "less than":</b>
+                <p>In these cases, the <i>value search bar</i> and the <i>pCHEMBL to nanomole converter</i> will appear.</p>
+		<img class="rounded mx-auto d-block" src="/static/web/about/search/is_equal.jpg" width="60%">
+		<p>It is possible to search any number. In case of decimal, it is NECESSARY to use a dot as a decimal point. Comma CANNOT be used either as decimal or thousand separator.</p>  
+		<p>
+		If the "equal to" option is chosen, the database will search for physical quantities equal to the selected value in nanomole.<br>
+		If the "greater than" option is chosen, the database will search for physical quantities greater than the selected value in nanomole.<br>
+		If the "less than" option is chosen, the database will search for physical quantities less than the selected value in nanomole.<br> 
+		</p>
+		<p>It is possible to use the <i>pCHEMBL to nanomole convertor</i> instead of the value search bar. pChEMBL is defined as: -Log(molar IC50, EC50, Ki or Kd). The converted value will be automatically written into the value search bar.<br>In case of decimal pCHEMBL, it is NECESSARY to use a dot as a decimal point. Comma CANNOT be used either as decimal or thousand separator.</p> 
+        </li>
+	 <li> <b>Option "between":</b>
+                <p>In this case, the <i>value search bars</i> and the <i>pCHEMBL to nanomole converters</i> will appear.</p>
+		<img class="rounded mx-auto d-block" src="/static/web/about/search/is_between.jpg" width="60%">
+		<p>It is possible to search any numbers. In case of decimal, it is NECESSARY to use a dot as a decimal point. Comma CANNOT be used either as decimal or thousand separator.</p>
+		<p>In this case, the database will search for physical quantities between the first selected and the second selected value in nanomole.</p>
+		<p>It is possible to use <i>pCHEMBL to nanomole convertors</i> instead of value search bars. pChEMBL is defined as: -Log(molar IC50, EC50, Ki or Kd). The converted values will be automatically written into the value search bars.<br> In case of decimal pCHEMBL, it is NECESSARY to use a dot as a decimal point. Comma CANNOT be used either as decimal or thousand separator.</p> 
+        </li>
+	</ol>
+</div>
+
+
+<img src="/static/web/about/search/break.jpg" width="100%">
+<div class="row">
+        <div class="col-3">
+                <img src="/static/web/about/search/confidence_score.jpg" onclick="search_help_confidence_score()" style="cursor:pointer" width="100%">
+        </div>
+        <div class="col-9">
+		<br>
+                <img src="/static/web/about/search/no_metals.jpg" onclick="search_help_no_metals()" style="cursor:pointer" width="100%">
+        </div>
+</div>
+
+
+<div class="bg-light" id="search_help_confidence_score" style="display:none;">
+        <h6>Confidence score</h6>
+	<p>A CHEMBL confidence score is described in the following table:
+	<table class="table table-sm table-hover">
+        <tr>
+                <th>Confidence score</th>
+                <th>Description</th>
+        </tr>
+        <tr>
+                <td>0</td>
+                <td>Default value - Target assignment has yet to be curated</td>
+        </tr>
+        <tr>
+                <td>1</td>
+                <td>Target assigned is non-molecular</td>
+        </tr>
+        <tr>
+                <td>3</td>
+                <td>Target assigned is molecular non-protein target</td>
+        </tr>
+        <tr>
+                <td>4</td>
+                <td>Multiple homologous protein targets may be assigned</td>
+        </tr>
+        <tr>
+                <td>5</td>
+                <td>Multiple direct protein targets may be assigned</td>
+        </tr>
+        <tr>
+                <td>6</td>
+                <td>Homologous protein complex subunits assigned</td>
+        </tr>
+        <tr>
+                <td>7</td>
+                <td>Direct protein complex subunits assigned</td>
+        </tr>
+        <tr>
+                <td>8</td>
+                <td>Homologous single protein target assigned</td>
+        </tr>
+        <tr>
+                <td>9</td>
+                <td>Direct single protein target assigned</td>
+        </tr>
+	</table>
+	More information about the CHEMBL confidence score can be found in <a href="https://chembl.gitbook.io/chembl-interface-documentation/frequently-asked-questions/chembl-data-questions#what-is-the-confidence-score" target="_blank">CHEMBL GitBook</a>.
+	</p>
+	<p>Since the CHEMBL confidence score is originally included in CHEMBL database only, there are NO data about for confidence score in BindingDB available. Therefore <b>confidence score for every record from BindingDB is set to "0 or Unknown"</b>.</p>
+        <p>It is possible to select one or more confidence scores. To select/deselect more confidence scores hold the CTRL key.</p>
+        <p>If no confidence scores are selected by hand, the database will automatically search for all the confidence scores available ("0 or Unknown" included).</p>
+</div>
+<div class="bg-light" id="search_help_no_metals" style="display:none;">
+        <h6>Metals/Semimetals problem</h6>
+	<p>Since the ligands with some specific elements, such as metals or semimetals, can be troublesome, it is possible to exclude them.<br>If this possibility is selected, the database will search ligands with the following elements only: carbon, hydrogen, oxygen, nitrogen, sulfur, phosphorus, fluorine, chlorine, bromine, and iodine.
+</div>
+
+
+
+<img src="/static/web/about/search/break.jpg" width="100%">
+<div class="row">
+        <div class="col">
+                <img src="/static/web/about/search/source.jpg" onclick="search_help_source()" style="cursor:pointer" width="100%">
+        </div>
+</div>
+<div class="bg-light" id="search_help_source" style="display:none;">
+        <h6>Source database</h6>
+	<p>There are four options to search for data: 
+	<ol type="A">
+		<li><b>All data</b>
+		<p>
+		This option searches for data from both databases and their intersection. See the picture below:
+		<img class="rounded mx-auto d-block" src="/static/web/about/search/venn_all.jpeg" width="60%">		
+		</p>
+		</li>
+                <li><b>Intersection of both databases</b>
+		<p>
+		This option searches for data from the intersection of databases Chembl and BindingDB only. See the picture below:
+		<img class="rounded mx-auto d-block" src="/static/web/about/search/venn_intersection.jpeg" width="60%">
+		</p>
+                </li>
+                <li><b>Chembl</b>
+		<p>
+		This option searches for data from Chembl only (and are NOT in BindingDB, in other words the intersection is excluded). See the picture below:
+		<img class="rounded mx-auto d-block" src="/static/web/about/search/venn_chembl.jpeg" width="60%">
+		</p>
+                </li>
+                <li><b>BindingDB</b>
+		<p>
+		This option searches for data from BindingDB only (and are NOT in Chembl, in other words the intersection is excluded). See the picture below:
+		<img class="rounded mx-auto d-block" src="/static/web/about/search/venn_bdb.jpeg" width="60%">
+		</p>
+                </li>
+	</ol>
+</div>
+</div>
+
+{% endblock content %}
+
+

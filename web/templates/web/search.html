@@ -1,0 +1,309 @@
+{% extends "web/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% if page != '' %}
+	{% include 'web/activity_list_search.html' %}
+{% else %}
+	<h2 style="text-align: center">Welcome to a website of Chembdb database</h2>
+	<h3 style="text-align: center"><i>Database of Biological Activity of Nuclear Receptors</i></h3>
+	<br>
+	<div class="container">
+	<h3>Now you can search:</h3>
+	<form method="POST" action="{% url 'web-search' %}">
+		{% csrf_token %}
+		
+	<div class="row">	
+		<div class="col-5">
+			{{ form.receptor|as_crispy_field }}
+		</div>
+		<div class="col-7">
+			
+			{{ form.inchi|as_crispy_field }}
+			
+			<div class="row justify-content-start">
+				<div class="col-4">
+					<button id="click" type="button" class="btn btn-secondary btn-sm" onclick="Show()">
+  					Show/Hide sKetcher
+					</button>
+				</div>
+				<div class="col">
+					{{ form.ligand_type|as_crispy_field }}
+				</div>
+				<div class="col" id="tanimoto_show" style="display:none;" data-tip="Hello">
+					{{ form.tanimoto|as_crispy_field }}
+				</div> 
+			</div>
+		</div>
+	</div>
+	<div id="ketcher" style="display:block;">
+		<div class="row">
+			<div class="col-8">
+				<iframe onload="loadMol()" id="ketcherFrame" name="ketcherFrame" style="width:100%;height:530px;border-style:none;" src="{% url 'web-ketcher' %}" scrolling="no"></iframe>
+			</div>
+			<div class="col-4">
+				<h5>How does sKetcher work:</h5>
+				<small>
+				<ol>
+				<li>Draw your ligand</li>
+				<li>Click the Save button</li>
+				<li>Check a SMILES of your ligand</li>
+				<li>Click the "Apply" button to copy the SMILES into the form</li>  
+				</ol>
+				</small>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-4">
+			{{ form.types|as_crispy_field }}
+		</div>
+		<div class="col">
+			{{ form.relation|as_crispy_field }}
+		</div>
+		<div class="col" id="no-between" style="display:none;">
+			{{ form.value|as_crispy_field }}
+			<div class="row">
+			<div class="col">
+			<input id="input" step="any" class="form-control form-control-sm" type="number" placeholder="pChembl to nM converter" oninput="Converter(this.value)" onchange="Converter(this.value)">
+			</div>
+			</div>
+		</div>
+		<div class="col" id="yes-between" style="display:none;">
+			<div class="row">
+				<div class="col">
+					{{ form.value_between_smaller|as_crispy_field }}
+					<div class="row">
+					<div class="col">
+					<input id="input" step="any" class="form-control form-control-sm" type="number" placeholder="pChembl to nM" oninput="Converter_sm(this.value)" onchange="Converter_sm(this.value)">
+					</div>
+					</div>
+				</div>
+				<div class="col">
+					{{ form.value_between_bigger|as_crispy_field }}
+					<div class="row">
+					<div class="col">
+					<input id="input" step="any" class="form-control form-control-sm" type="number" placeholder="pChembl to nM" oninput="Converter_bg(this.value)" onchange="Converter_bg(this.value)">
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="row" id="test">
+		<div class="col">
+			<div class="row">
+				<div class="col-8">
+					<label for="id_confidence_score" class="">
+                			Confidence score
+					</label>
+				</div> 
+				<div class="col click-to-top">
+					<input type="image" onclick="return false;" style="vertical-align: sub;" src="/static/web/help.jpeg" width="20" height="20">
+            				<span class="bg-light">
+<small><small><small>
+<table class="table table-sm">
+        <tr>
+                <th>Confidence score</th>
+                <th>Description</th>
+        </tr>
+        <tr>
+                <td>0</td>
+                <td>Default value - Target assignment has yet to be curated</td>
+        </tr>
+        <tr>
+                <td>1</td>
+                <td>Target assigned is non-molecular</td>
+        </tr>
+        <tr>
+                <td>3</td>
+                <td>Target assigned is molecular non-protein target</td>
+        </tr>
+        <tr>
+                <td>4</td>
+                <td>Multiple homologous protein targets may be assigned</td>
+        </tr>
+        <tr>
+                <td>5</td>
+                <td>Multiple direct protein targets may be assigned</td>
+        </tr>
+        <tr>
+                <td>6</td>
+                <td>Homologous protein complex subunits assigned</td>
+        </tr>
+        <tr>
+                <td>7</td>
+                <td>Direct protein complex subunits assigned</td>
+        </tr>
+        <tr>
+                <td>8</td>
+                <td>Homologous single protein target assigned</td>
+        </tr>
+        <tr>
+                <td>9</td>
+                <td>Direct single protein target assigned</td>
+        </tr>
+</table>
+</small></small></small>
+					</span>
+				</div>
+			</div>
+			{{ form.confidence_score|as_crispy_field }}
+		</div>
+		<div class="col-9"><br><br>
+			{{ form.without_metals|as_crispy_field }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			{{ form.source_db|as_crispy_field }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<button type="submit" class="btn btn-secondary btn-lg btn-block">Search</button>
+		</div>
+	</div>
+<!---
+	<div class="float-right">		
+		<button type="submit" class="btn btn-secondary btn-lg btn-block">
+			Search
+		</button>
+	</div>
+	</form>
+	<br>
+-->
+<!--
+	<div>
+	<a href="#most_common_list"><button type="button" id="most_common" onclick="MostCommon()" class="text-muted btn btn-link">Or just click me and choose one of the most common searches</button></a>
+	<div id="most_common_list" style="display:none;">
+		<small>
+		<a href="http://127.0.0.1:8000/?page=1&receptor=[%2731%27]&source_db=everything&inchi=&without_metals=False&relation=smaller&types=[%27EC50%27,%20%27IC50%27,%20%27Ki%27,%20%27Kd%27]&value=50&value_between_smaller=&value_between_bigger=&confidence_score=[%279%27]&sort=None" class="text-muted list-group-item list-group-item-action"><b>Receptor:</b> Estrogen alpha; <b>Physical quantity:</b> EC50, IC50, Ki, Kd <b>is less than 50</b> nM; <b>Confidence score</b>: 9; <b>Search in</b> all databases</a>
+		<a href="#" class="text-muted list-group-item list-group-item-action">Morbi leo risus</a>
+		<a href="#" class="text-muted list-group-item list-group-item-action">Porta ac consectetur ac</a>
+		<a href="#" class="text-muted list-group-item list-group-item-action">Morbi leo risus</a>
+		<a href="#" class="text-muted list-group-item list-group-item-action">Porta ac consectetur ac</a>
+		<a href="#" class="text-muted list-group-item list-group-item-action">Morbi leo risus</a>
+		<a href="#" class="text-muted list-group-item list-group-item-action">Porta ac consectetur ac</a>
+		<a href="#" class="text-muted list-group-item list-group-item-action">Morbi leo risus</a>
+		<a href="#" class="text-muted list-group-item list-group-item-action">Porta ac consectetur ac</a>
+		<a href="#" class="text-muted list-group-item list-group-item-action">Morbi leo risus</a>
+		<a href="#" class="text-muted list-group-item list-group-item-action">Porta ac consectetur ac</a>
+		<a href="#" class="text-muted list-group-item list-group-item-action">Morbi leo risus</a>
+		<a href="#" class="text-muted list-group-item list-group-item-action">Porta ac consectetur ac</a>
+		<a href="#" class="text-muted list-group-item list-group-item-action">Morbi leo risus</a>
+		<a href="#" class="text-muted list-group-item list-group-item-action">Porta ac consectetur ac</a>
+		</small>
+	</div> 	
+	</div>
+-->
+	</div>
+
+<!--Helping window-->
+<input type="image" onclick="return false;" style="position:absolute;top:10px;right:10px" src="/static/web/help.jpeg" width="30" height="30" data-toggle="modal" data-target="#exampleModalLong">
+<div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-body">
+	<iframe src="{% url 'web-search_help' %}" width="100%" height="500px" frameBorder="0"></iframe>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+<!--End of helping window-->
+
+	<script>
+	function Converter(valNum) {
+		if (!!valNum)
+		{
+		document.getElementById("id_value").value=Math.round(Math.pow(10, -valNum)*1000000000);
+		}	
+	}
+	function Converter_sm(valNum) {
+		if (!!valNum)
+		{
+		document.getElementById("id_value_between_smaller").value=Math.round(Math.pow(10, -valNum)*1000000000);
+		}	
+	}
+	function Converter_bg(valNum) {
+		if (!!valNum)
+		{
+		document.getElementById("id_value_between_bigger").value=Math.round(Math.pow(10, -valNum)*1000000000);
+		}	
+	}
+
+	function NoComma_tanimoto(val) {
+		document.getElementsByName("tanimoto").value=val.replace(",", ".");
+	}
+
+
+	function Rewriter() {
+		var iframe = document.getElementById("ketcherFrame");
+		var val = iframe.contentWindow.document.getElementById("mol_data").value;
+		val = val.replace("undefined","")
+		document.getElementById("id_inchi").value=val;
+		iframe.contentWindow.document.getElementById("save_ok").click();
+		Show();
+	}
+	function Show() {
+		var x = document.getElementById("ketcher")
+  		if (x.style.display == "block") {
+    			x.style.display = "none";
+  		} else {
+    			x.style.display = "block";
+  		}
+	}
+	function Between() {
+		var relation = document.getElementById("id_relation").value;
+		var no = document.getElementById("no-between");
+		var yes = document.getElementById("yes-between");
+		if (relation == "between"){
+			no.style.display = "none";
+			yes.style.display = "block";
+		} else if (relation == "noth"){
+			no.style.display = "none";
+			yes.style.display = "none";
+		} else {
+			no.style.display = "block";
+			yes.style.display = "none";
+		}
+		
+	}
+	function Tanimoto() {
+		var tanim = document.getElementById("tanimoto_show");
+		var lig_type = document.getElementById("id_ligand_type").value;
+  		if (lig_type == "similar") {
+    			tanim.style.display = "block";
+  		} else {
+    			tanim.style.display = "none";
+  		}	
+	}
+	
+	window.addEventListener("load", function(){
+		Show();
+	});
+	document.addEventListener("load", function(){
+		document.getElementById("id_confidence_score").labels.innerHTML = 'Extra stuff';
+	});
+	function MostCommon() {
+		var list = document.getElementById("most_common_list");
+  		if (list.style.display == "block") {
+    			list.style.display = "none";
+			document.getElementById("most_common").className = "text-muted btn btn-link";
+  		} else {
+    			list.style.display = "block";
+			document.getElementById("most_common").className = "btn-lg text-dark btn btn-link";
+  		}
+	}
+	</script>
+	<style>
+		div.click-to-top span {display: none; position: absolute; bottom: 0; left: 0; right: 0; width: 500%}
+		div.click-to-top:hover span {display: block; }
+	</style>
+{% endif %}
+{% endblock content %}
+

@@ -1,0 +1,47 @@
+{% extends "web/base_help.html" %}
+{% block content%}
+<h5>About the detail of source</h5>
+<p>In the detail of source, further information, such as patent number or authors, are listed.
+</p>
+<p>
+This is what the detail of source should look like.
+</p>
+<div class="container-fluid">
+<div class="row">
+        <div class="col">
+                <img src="/static/web/about/details/source_screen_of_all.jpg" width="100%">
+        </div>
+</div>
+<hr>
+<div  id="activity_detail_help_table">
+<p>Individual values, numbers and characters will be described using the example above in the following table:</p>
+<table class="table table-hover">
+<tr>
+        <td>10.1016/j.bmcl.2008.03.027</td>
+        <td>The DOI of source, where the record originally come from. If the source is not available, there will be an "Unknown source" instead of the DOI. Click the DOI, the original source, where the activity come from, to open it.
+</td>
+</tr>
+<tr>
+        <td>18374567</td>
+        <td>The Pubmed ID. If the Pubmed ID is not available, there will be an "Unknown source" instead of Pubmed ID. Pubmed is a webside for the database MEDLINE. This database includes citations and abstracts of biomedical literature.</td>
+</tr>
+<tr>
+        <td>Unknown</td>
+        <td>The Pubchem ID. If the Pubchem ID is not available, there will be an "Unknown source" instead of Pubchem ID. Pubchem is a database of many freely accessible chemical information, such as biological activities, patents, or citations.</td>
+</tr>
+<tr>
+        <td>None</td>
+        <td>The number of patent (if exists, else "None").</td>
+</tr>
+<tr>
+        <td>Roth, J; Madoux, F; Hodder, P; Roush, WR</td>
+        <td>The list of authors of the source (journal, article, etc.).</td>
+</tr>
+<tr>
+        <td>Scripps Florida</td>
+        <td>The institution the source (journal, article, etc.) comes from.</td>
+</tr>
+</table>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,129 @@
+<!-- list of all acivities, NOT an ANSWER for form-->
+	<div align="left"><small>Found {{ total }} records</small></div>
+	<div class="row justify-content-around">
+                        {% if act.has_previous %}
+                                <div align="right" class="col-2">
+                                        <a href="?page=1&sort={{ sort }}">&lt;&lt; first</a>
+                                </div>
+                                <div align="center" class="col-2">
+                                        <a href="?page={{ act.previous_page_number }}&sort={{ sort }}">&lt; previous</a>
+                                </div>
+                        {% else %}
+                                <div align="center" class="col-4">
+                                </div>
+                        {% endif %}
+
+                        <div align="center" class="col-4">
+                                Page {{ act.number }} of {{ act.paginator.num_pages }}
+                        </div>
+                        {% if act.has_next %}
+                                <div align="center" class="col-2">
+                                        <a href="?page={{ act.next_page_number }}&sort={{ sort }}">next &gt;</a>
+                                </div>
+                                <div align="left" class="col-2">
+                                        <a href="?page={{ act.paginator.num_pages }}&sort={{ sort }}">last &gt;&gt;</a>
+                                </div>
+                        {% else %}
+                                <div align="center" class="col-4">
+                                </div>
+                        {% endif %}
+        </div>
+        <p></p>
+
+	<table style="width:100%" class="table table-hover" id="myTable" >
+			<thead><b><tr> <!-- sorting-->
+				<th></th>
+				<th><input type="checkbox" onClick="toggle(this)" /></th>
+				<th>Uniprot name of receptor {% if sort == 'uniprot_sort' %}<a href="?sort=uniprot_reverse_sort"><img src="/static/web/sort.png" style="width:20px; height:20px;"></a>{% else %}<a href="?sort=uniprot_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</a></th>
+				<th>Ligand {% if sort == 'ligand_sort' %}<a href="?sort=ligand_reverse_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% else %}<a href="?sort=ligand_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</th>
+				<th>DOI of source {% if sort == 'doi_sort' %}<a href="?sort=doi_reverse_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% else %}<a href="?sort=doi_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</a></th>
+				<th>{% if sort == 'type_sort' %}<a href="?sort=type_reverse_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% else %}<a href="?sort=type_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</a></th>
+				<th>{% if sort == 'relation_sort' %}<a href="?sort=relation_reverse_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% else %}<a href="?sort=relation_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</a></th>
+				<th>{% if sort == 'value_sort' %}<a href="?sort=value_reverse_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% else %}<a href="?sort=value_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</a></th>
+				<th>{% if sort == 'unit_sort' %}<a href="?sort=unit_reverse_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% else %}<a href="?sort=unit_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</a></th>
+				<th>Source Database {% if sort == 'source_db_sort' %}<a href="?sort=source_db_reverse_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% else %}<a href="?sort=source_db_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</a></th>
+				<th></th>
+			</tr></b></thead>
+<form method="GET" action="{% url 'web-export-selected' %}">
+{% csrf_token %}
+		<tbody>
+		{% for obj in act %}
+			<tr>
+				<td></td>
+				<td><input type="checkbox" name="check[]" value="{{obj.activity_id}}"></td>
+				<td><a href={% url 'web-receptor-detail' receptor_id=obj.receptor_id %}>{{receptor_dict|lookup_receptor:obj.receptor_id}}</a></td>
+				<td><a href={% url 'web-ligand-detail' ligand_id=obj.ligand_id %}><img src="/static/web/inchi/ligand_{{obj.ligand_id}}.png" class="zoom" height="42" width="42"><p style = font-size:0px;">{{ligand_dict|lookup_ligand:obj.ligand_id}}</p></a></td>
+				<td><a href={% url 'web-source-detail' source_id=obj.source_id %}>{{source_dict|lookup_source:obj.source_id}}</a></td>
+				<td>{{obj.type}}</td>
+				<td>{{obj.relation}}</td>
+				<td>{{obj.value}}</td>
+				<td>{{obj.unit}}</td>
+				<td>{{obj.source_db}}</td>
+				<td><a href={% url 'web-activity-detail' activity_id=obj.activity_id %}>Details</a></td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+
+	<!--paging-->
+	<div class="row justify-content-around">
+        		{% if act.has_previous %}
+				<div align="right" class="col-2">
+            				<a href="?page=1&sort={{ sort }}">&lt;&lt; first</a>
+				</div>
+				<div align="center" class="col-2">
+            				<a href="?page={{ act.previous_page_number }}&sort={{ sort }}">&lt; previous</a>
+				</div>
+			{% else %}
+				<div align="center" class="col-4">
+				</div>
+        		{% endif %}
+
+			<div align="center" class="col-4">
+            			Page {{ act.number }} of {{ act.paginator.num_pages }}
+			</div>
+        		{% if act.has_next %}
+				<div align="center" class="col-2">
+            				<a href="?page={{ act.next_page_number }}&sort={{ sort }}">next &gt;</a>
+				</div>
+				<div align="left" class="col-2">
+            				<a href="?page={{ act.paginator.num_pages }}&sort={{ sort }}">last &gt;&gt;</a>
+				</div>
+			{% else %}
+				<div align="center" class="col-4">
+				</div>
+        		{% endif %}
+	</div>
+	<p></p>
+<!--downloading-->
+	<div class="row justify-content-center">
+		<div class="col" align="right">
+			<button type="submit" class="btn btn-secondary">Export selected to csv</button>
+		</div>
+</form>
+<div></div>
+		<div class="col" align="left">
+			<form method="POST" action="{% url 'web-export' %}">
+				{% csrf_token %}
+				<input type="hidden" id="id_list_of_all" name="list_of_all" value="{{ list_of_all }}">
+				<input type="hidden" id="id_ligand" name="ligand" value="">
+				<button type="submit" class="btn btn-secondary">Export all to csv</button>
+			</form>	
+		</div>
+	</div>
+
+<!--Helping window-->
+<input type="image" style="position:absolute;top:10px;right:10px"src="/static/web/help.jpeg" width="30" height="30" onclick="return false;" data-toggle="modal" data-target="#exampleModalLong">
+<div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-body">
+	<iframe src="{% url 'web-activity_list_help' %}" width="100%" height="500px" frameBorder="0"></iframe>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+<!--End of the helping window-->

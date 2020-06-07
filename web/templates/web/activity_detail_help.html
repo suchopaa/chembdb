@@ -1,0 +1,57 @@
+{% extends "web/base_help.html" %}
+{% block content%}
+<h5>About the detail of activity</h5>
+<p>In the detail of activity, further information, such as temperature or pH, are listed.
+</p>
+<p>
+This is what the detail of activity should look like.
+</p>
+<div class="container-fluid">
+<div class="row">
+        <div class="col">
+                <img src="/static/web/about/details/activity_screen_of_all.jpg" width="100%">
+        </div>
+</div>
+<hr>
+<div  id="activity_detail_help_table">
+<p>Individual values, numbers, and characters will be described using the example above in the following table:</p>
+<table class="table table-hover">
+<tr>
+        <td>Estrogen receptor beta</td>
+        <td>The Uniprot name of receptor. To open the "Detail of receptor" page, click the name of the receptor.</td>
+</tr>
+<tr>
+        <td><img src="/static/web/about/details/ligand_example.png" width="40%"></td>
+        <td>The picture of ligand. To make the picture bigger, hover the cursor on the picture. To open the "Detail of ligand" page, click the picture.</td>
+</tr>
+<tr>
+        <td>10.1021/jm030086h</td>
+        <td>The DOI of source, where the record originally come from. If the source is not available, there will be an "Unknown source" instead of DOI. To open the "Detail of source" page, click the DOI of source.</td>
+</tr>
+<tr>
+        <td>IC50 = 346.0 nM</td>
+        <td>The activity itself. It has the following template: PHYSICAL QUANTITY; RELATION; VALUE; UNIT.</td>
+</tr>
+<tr>
+        <td>6.46</td>
+        <td>The pCHEMBL of the value. pChEMBL is defined as: -Log(molar IC50, EC50, Ki or Kd).</td>
+</tr>
+<tr>
+        <td>8</td>
+        <td>The confidence score. More information about the confidence score can be found in "About the search form" section, or in <a href="https://chembl.gitbook.io/chembl-interface-documentation/frequently-asked-questions/chembl-data-questions#what-is-the-confidence-score" target="_blank">CHEMBL GitBook</a>.</td>
+</tr>
+<tr>
+	<td>None</td>
+	<td>The pH of the experiment where the activity was originally found. If the pH is not available, there will be "None" instead of the pH.</tr>
+</tr>
+<tr>
+	<td>25.00C</td>
+	<td>The temperature of the experiment where the activity was originally found. If the temperature is not available, there will be "Unknown" instead of the temperature.</td>
+</tr>
+<tr>
+	<td>Chembl, BDB</td>
+	<td>The source database (or databases, in case the activity is available in more than one).</td>
+</table>
+</div>
+</div>
+{% endblock content %}

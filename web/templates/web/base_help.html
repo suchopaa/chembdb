@@ -1,0 +1,173 @@
+<!-- base page, where every static is loaded, functions of all web page, css, django and the appearance including sidebar-->
+
+{% load static %}
+{% load django_tables2 %}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.header{
+  text-align: center;
+}
+
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.table, th, td{
+  border: 1px solid black;
+  text-align: center;
+}
+
+.th{
+  padding: 15px;
+  border: 1px solid black;
+  width: 50px;
+  text-align: center;
+}
+
+.tr{
+  padding: 15px;
+  border: 1px solid black;
+  width: 50px;
+  text-align: center;
+}
+
+.zoom {
+  transition: transform .2s;
+}
+
+.zoom:hover {
+  -ms-transform: scale(7); /* IE 9 */
+  -webkit-transform: scale(7); /* Safari 3-8 */
+  transform: scale(7); 
+}
+
+.zoom2 {
+  transition: transform .2s;
+}
+
+.zoom2:hover {
+  -ms-transform: scale(3); /* IE 9 */
+  -webkit-transform: scale(3); /* Safari 3-8 */
+  transform: scale(3);
+}
+
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+
+<!-- this three following functions are not used now, were used earlier for downloading selected activities on one page-->
+<script>
+function toggle(source) {
+  checkboxes = document.getElementsByName('check[]');
+  for(var i=0, n=checkboxes.length;i<n;i++) {
+    checkboxes[i].checked = source.checked;
+  }
+}
+
+function downloadCSV(csv, filename){
+	var csvFile;
+	var downloadLink;
+
+	csvFile = new Blob([csv], {type:"text/csv"});
+
+	downloadLink = document.createElement("a");
+	downloadLink.download = filename;
+	downloadLink.href = window.URL.createObjectURL(csvFile);
+	downloadLink.style.display = "none";
+
+	document.body.appendChild(downloadLink);
+
+	downloadLink.click();
+}
+
+function exportTableToCSV(filename){
+	var csv = [];
+	var tab = document.getElementById("myTable");
+	var rows = tab.getElementsByTagName("TR");
+	var checkboxes = tab.getElementsByTagName("INPUT");
+	
+	for(var i = 0; i < checkboxes.length; i++){
+		if (checkboxes[i].checked){
+			var row = [], cols = rows[i].getElementsByTagName("TD");
+			for(var j = 0; j < cols.length; j++){
+				row.push(cols[j].innerText);		
+			}
+			csv.push(row.join(";"));
+		}	
+	}
+
+	downloadCSV(csv.join("\n"), filename);
+}
+
+function counting(){
+	var tab = document.getElementById("myTable");
+	var page = "{{ page }}"
+	if (page == 'None'){
+		page = 1;
+	}
+	var rows = tab.getElementsByTagName("TR");
+	for(var i = 1; i <= rows.length; i++) {
+		var final = (page - 1)*30 + i;
+      		rows[i].children[0].innerText = "#" + final;
+    	} 
+
+}
+
+</script>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'web/main.css' %}">
+	{% if title %}
+		<title>Chembdb - {{ title }}</title>
+	{% else %}
+		<title>Chembdb</title>
+	{% endif %}
+</head>
+<body onload="counting()">
+<div>
+	{% block content %}{% endblock %}
+</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

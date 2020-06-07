@@ -1,0 +1,50 @@
+{% extends "web/base_help.html" %}
+{% block content%}
+<h5>About the detail of ligand</h5>
+<p>In the detail of ligand, further information, such as SMILES or Inchi Key, are listed.
+</p>
+<p>
+This is what the detail of ligand should look like.
+</p>
+<div class="container-fluid">
+<div class="row">
+        <div class="col">
+                <img src="/static/web/about/details/ligand_screen_of_all.jpg" width="100%">
+        </div>
+</div>
+<hr>
+<div  id="ligand_detail_help_table">
+<p>Individual values, numbers, and characters will be described using the example above in the following table:</p>
+<table class="table table-hover">
+<tr>
+        <td><img src="/static/web/about/details/ligand_example.png" width="20%"></td>
+        <td>The image of the ligand.</td>
+</tr>
+<tr>
+        <td><b>Above the table</b><br>InChI=1S/C28H32N2O2/c31-25-11-14-27-23(21-25)<br>15-18-30(24-7-3-1-4-8-24)28(27)22-9<br>-12-26(13-10-22)32-20-19-29-16-5-2-6-17-29/<br>h1,3-4,7-14,21,28,31H,2,5-6,15-20H2</td>
+        <td>InChI created specifically for this database. The InChI is without stereochemistry and is standardised (if necessary).</td>
+</tr>
+<tr>
+        <td>FMWVCTJKLAVRPB-UHFFFAOYSA-N</td>
+        <td>InChI key created from InChI above the table (without stereochemistry and standardised).</td>
+</tr>
+<tr>
+        <td><b>Chembl</b><br>InChI=1S/C28H32N2O2/c31-25-11-14-27-23(21-25)<br>15-18-30(24-7-3-1-4-8-24)28(27)22-9<br>-12-26(13-10-22)32-20-19-29-16-5-2-6-17-29/<br>h1,3-4,7-14,21,28,31H,2,5-6,15-20H2</td>
+        <td>InChI from Chembl database.</td>
+</tr>
+<tr>
+        <td><b>BindingDB</b><br>InChI=1/C28H32N2O2/c31-25-11-14-27-23(21-25)<br>15-18-30(24-7-3-1-4-8-24)28(27)22-9<br>-12-26(13-10-22)32-20-19-29-16-5-2-6-17-29/<br>h1,3-4,7-14,21,28,31H,2,5-6,15-20H2</td>
+        <td>InChI from BindingDB.</td>
+</tr>
+<tr>
+        <td>OC1=CC=C2C(=C1)CCN(C1=CC=CC=C1)<br>C2C1=CC=C(OCCN2CCCCC2)C=C1</td>
+        <td>SMILES created specifically for this database. The SMILES is without stereochemistry and is standardised (if necessary).</td>
+</tr>
+<tr>
+	<td>True</td>
+	<td>If "True", the ligand contains the following elements only: carbon, hydrogen, oxygen, nitrogen, sulfur, phosphorus, fluorine, chlorine, bromine, and iodine. If "False", the ligand contains any element(s).</td>
+</tr>
+</table>
+</div>
+</div>
+{% endblock content %}

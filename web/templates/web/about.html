@@ -1,0 +1,144 @@
+<!-- About page, how everything works and so...-->
+
+{% extends "web/base.html" %}
+{% block content %}
+<script>
+function web_search_help() {
+        x = document.getElementById("web_search_help")
+        if (x.style.display == "none"){
+                about_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function web_activity_list_help() {
+        x = document.getElementById("web_activity_list_help")
+        if (x.style.display == "none"){
+                about_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function web_receptor_list_help() {
+        x = document.getElementById("web_receptor_list_help")
+        if (x.style.display == "none"){
+                about_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function web_activity_detail_help() {
+        x = document.getElementById("web_activity_detail_help")
+        if (x.style.display == "none"){
+                about_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function web_receptor_detail_help() {
+        x = document.getElementById("web_receptor_detail_help")
+        if (x.style.display == "none"){
+                about_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function web_ligand_detail_help() {
+        x = document.getElementById("web_ligand_detail_help")
+        if (x.style.display == "none"){
+                about_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function web_source_detail_help() {
+        x = document.getElementById("web_source_detail_help")
+        if (x.style.display == "none"){
+                about_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function webpage_help() {
+        x = document.getElementById("webpage_help")
+        if (x.style.display == "none"){
+                about_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function about_close(){
+        document.getElementById("web_search_help").style.display = "none";
+        document.getElementById("web_activity_list_help").style.display = "none";
+	document.getElementById("web_receptor_list_help").style.display = "none";
+        document.getElementById("web_activity_detail_help").style.display = "none";
+	document.getElementById("web_receptor_detail_help").style.display = "none";
+	document.getElementById("web_ligand_detail_help").style.display = "none";
+	document.getElementById("web_source_detail_help").style.display = "none";
+	document.getElementById("webpage_help").style.display = "none";
+}
+</script>
+<h2 style="text-align: center">About</h2>
+<h4>I want to get more information about:</h4>
+<ul>
+<li><h5 onclick="web_search_help()" style="cursor:pointer">Search form</h5></li>
+	<div class="container" id="web_search_help" style="display:none">
+	<iframe src="{% url 'web-search_help' %}" width="100%" height="500px" frameBorder="0"></iframe>
+	</div>
+<hr>
+<li><h5 onclick="web_activity_list_help()" style="cursor:pointer">List of activities</h5></li>
+	<div class="container" id="web_activity_list_help" style="display:none">
+	<iframe src="{% url 'web-activity_list_help' %}" width="100%" height="500px" frameBorder="0"></iframe>
+	</div>
+<hr>
+<li><h5 onclick="web_receptor_list_help()" style="cursor:pointer">List of all receptors</h5></li>
+	<div class="container" id="web_receptor_list_help" style="display:none">
+	<iframe src="{% url 'web-receptor_list_help' %}" width="100%" height="500px" frameBorder="0"></iframe>
+	</div>
+<hr>
+<li><h5 onclick="web_activity_detail_help()" style="cursor:pointer">Details about activity</h5></li>
+        <div class="container" id="web_activity_detail_help" style="display:none">
+	<iframe src="{% url 'web-activity_detail_help' %}" width="100%" height="500px" frameBorder="0"></iframe>
+	</div>
+<hr>
+<li><h5 onclick="web_receptor_detail_help()" style="cursor:pointer">Details about receptor</h5></li>
+        <div class="container" id="web_receptor_detail_help" style="display:none">
+        <iframe src="{% url 'web-receptor_detail_help' %}" width="100%" height="500px" frameBorder="0"></iframe>
+        </div>
+<hr>
+<li><h5 onclick="web_ligand_detail_help()" style="cursor:pointer">Details about ligand</h5></li>
+        <div class="container" id="web_ligand_detail_help" style="display:none">
+        <iframe src="{% url 'web-ligand_detail_help' %}" width="100%" height="500px" frameBorder="0"></iframe>
+        </div>
+<hr>
+<li><h5 onclick="web_source_detail_help()" style="cursor:pointer">Details about source</h5></li>
+        <div class="container" id="web_source_detail_help" style="display:none">
+        <iframe src="{% url 'web-source_detail_help' %}" width="100%" height="500px" frameBorder="0"></iframe>
+        </div>
+<hr>
+<li><h5 onclick="webpage_help()" style="cursor:pointer">Further information about webpage</h5></li>
+        <div class="container" id="webpage_help" style="display:none">
+	<ul>
+        <li><h5>General</h5>
+	<p>This webpage was created as an Internet access and the user interface for The Database of Biological Activities of Nuclear Receptors. This database and the webpage are a part of a bachelor paper of the University of Chemistry and Technology in Prague, the study program - Bioinformatics.</p>
+	</li>
+	<br>
+	<li>
+	<h5>Contacts</h5>
+	<p><b>Author:</b> Adam Suchopár<br><b>Supervisor:</b> Ing. Petr Čech, Ph.D.<br><b>Consultant:</b> Doc. Daniel Svozil, Ph.D.<br><b>Study program:</b>  Bioinformatics<br><b>Department: </b>Department of Informatics and Chemistry<br><b>Faculty:</b> Faculty of Chemical Technology<br><b>Institute: </b>University of Chemistry and Technology in Prague, Czech Republic<br><b>Year:</b> 2020</p>
+        </li>
+	<br>
+	<li>
+	<h5>Technical Information</h5>
+	<p><b>Database:</b> PostgreSQL<br><b>Webpage interface:</b> Python Django<br><b>CSS:</b> Bootstrap<br><b>Server:</b> Cesnet Metacentrum</p>
+	</li>
+	</div>
+{% endblock content %}

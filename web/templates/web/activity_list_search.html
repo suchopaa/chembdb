@@ -1,0 +1,141 @@
+        {% if total == 0 %}
+		<div align="left" class="text-danger font-weight-bold">Found {{ total }} records</div>
+	{% else %}
+		<div align="left"><small>Found {{ total }} records</small></div>
+	{% endif %}
+        <div class="row justify-content-around">
+                {% if act.has_previous %}
+                        <div align="right" class="col-2">
+                                <a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort={{ sort }}">&lt;&lt; first     </a>
+                        </div>
+                        <div align="center" class="col-2">
+                                <a href="?page={{ act.previous_page_number }}&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort={{ sort }}">&lt; previous</a>
+                        </div>
+                {% else %}
+                        <div align="center" class="col-4">
+                        </div>
+                {% endif %}
+                        <div align="center" class="col-4">
+                                Page {{ act.number }} of {{ act.paginator.num_pages }}
+                        </div>
+                {% if act.has_next %}
+                        <div align="center" class="col-2">
+                                <a href="?page={{ act.next_page_number }}&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort={{ sort }}">next &gt;</a>
+                        </div>
+                        <div align="left" class="col-2">
+                                <a href="?page={{ act.paginator.num_pages }}&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort={{ sort }}">last &gt;&gt;</a>
+                        </div>
+                {% else %}
+                        <div align="center" class="col-4">
+                        </div>
+                {% endif %}
+        </div>
+        <p></p>
+
+
+	<table style="width:100%" class="table table-hover" id="myTable" >
+			<thead><b><tr>
+				<th></th>
+				<th><input type="checkbox" onClick="toggle(this)" /></th>
+				<th>Uniprot name of receptor {% if sort == 'uniprot_sort' %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=uniprot_reverse_sort"><img src="/static/web/sort.png" style="width:20px; height:20px;"></a>{% else %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=uniprot_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</a></th>
+				<th>Ligand {% if sort == 'ligand_sort' %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=ligand_reverse_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% else %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=ligand_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</th>
+				<th>Tanimoto</th>
+				<th>DOI of source {% if sort == 'doi_sort' %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=doi_reverse_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% else %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=doi_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</a></th>
+				<th>{% if sort == 'type_sort' %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=type_reverse_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% else %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=type_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</a></th>
+				<th>{% if sort == 'relation_sort' %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=relation_reverse_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% else %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=relation_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</a></th>
+				<th>{% if sort == 'value_sort' %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=value_reverse_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% else %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=value_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</a></th>
+				<th>{% if sort == 'unit_sort' %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=unit_reverse_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% else %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=unit_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</a></th>
+				<th>Source Database {% if sort == 'source_db_sort' %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=source_db_reverse_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% else %}<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort=source_db_sort"><img src="/static/web/sort.png" style="width: 20px; height: 20px"></a>{% endif %}</a></th>
+				<th></th>
+			</tr></b></thead>
+<form method="GET" action="{% url 'web-export-selected' %}">
+{% csrf_token %}
+		<tbody>
+		{% for obj in act %}
+			<tr>
+				<td></td>
+				<td><input type="checkbox" name="check[]" value="{{obj.activity_id}}"></td>
+				<td><a href={% url 'web-receptor-detail' receptor_id=obj.receptor_id %}>{{receptor_dict|lookup_receptor:obj.receptor_id}}</a></td>
+				<td><a href={% url 'web-ligand-detail' ligand_id=obj.ligand_id %}><img src="/static/web/inchi/ligand_{{obj.ligand_id}}.png" class="zoom" height="42" width="42"><p style = font-size:0px;">{{ligand_dict|lookup_ligand:obj.ligand_id}}</p></a></td>
+				<td>{{similar_dict|lookup_similar:obj.ligand_id}}</td>
+				<td><a href={% url 'web-source-detail' source_id=obj.source_id %}>{{source_dict|lookup_source:obj.source_id}}</a></td>
+				<td>{{obj.type}}</td>
+				<td>{{obj.relation}}</td>
+				<td>{{obj.value}}</td>
+				<td>{{obj.unit}}</td>
+				<td>{{obj.source_db}}</td>
+				<td><a href={% url 'web-activity-detail' activity_id=obj.activity_id %}>Details</a></td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+    
+
+	<div class="row justify-content-around">
+		{% if act.has_previous %}
+			<div align="right" class="col-2">
+				<a href="?page=1&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort={{ sort }}">&lt;&lt; first     </a>
+			</div>
+			<div align="center" class="col-2">
+				<a href="?page={{ act.previous_page_number }}&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort={{ sort }}">&lt; previous</a>
+			</div>
+		{% else %}
+			<div align="center" class="col-4">
+			</div> 
+		{% endif %}
+			<div align="center" class="col-4">
+				Page {{ act.number }} of {{ act.paginator.num_pages }}
+			</div>
+		{% if act.has_next %}
+			<div align="center" class="col-2">
+				<a href="?page={{ act.next_page_number }}&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort={{ sort }}">next &gt;</a>     
+			</div>
+			<div align="left" class="col-2">
+				<a href="?page={{ act.paginator.num_pages }}&receptor={{ receptor }}&source_db={{ source_db }}&inchi={{ inchi }}&ligand_type={{ ligand_type }}&tanimoto={{ tanimoto }}&without_metals={{ without_metals }}&relation={{ relation }}&types={{ types }}&value={{ value }}&value_between_smaller={{ value_between_smaller }}&value_between_bigger={{ value_between_bigger }}&confidence_score={{ confidence_score }}&sort={{ sort }}">last &gt;&gt;</a>
+			</div>
+		{% else %}
+			<div align="center" class="col-4">
+			</div>
+		{% endif %}
+	</div>
+	<p></p>
+	<div class="row justify-content-center">
+		<div class="col" align="right">
+			{% if ligand_type == "similar" %}
+				<input type="hidden" id="ligand" name="ligand" value="{{ inchi }}">
+			{% else %}
+				<input type="hidden" id="ligand" name="ligand" value="">
+			{% endif %}
+			<button type="submit" class="btn btn-secondary">Export selected to csv</button>
+		</div>
+</form>
+<div></div>
+		<div class="col" align="left">
+			<form method="POST" action="{% url 'web-export' %}">
+				{% csrf_token %}
+				<input type="hidden" id="id_list_of_all" name="list_of_all" value="{{ list_of_all }}">
+				{% if ligand_type == "similar" %}
+					<input type="hidden" id="id_ligand" name="ligand" value="{{ inchi }}">
+				{% else %}
+					<input type="hidden" id="id_ligand" name="ligand" value="">
+				{% endif %}
+				<button type="submit" class="btn btn-secondary">Export all to csv</button>
+			</form>
+		</div>
+	</div>
+
+<!--Helping window-->
+<input type="image" style="position:absolute;top:10px;right:10px"src="/static/web/help.jpeg" width="30" height="30" onclick="return false;" data-toggle="modal" data-target="#exampleModalLong">
+<div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-body">
+	<iframe src="{% url 'web-activity_list_help' %}" width="100%" height="500px" frameBorder="0"></iframe>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+<!--End of the helping window-->

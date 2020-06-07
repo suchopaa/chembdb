@@ -1,0 +1,57 @@
+{% extends "web/base.html" %}
+{% block content %}
+	<h2 class="header">Detail of activity</h2>
+	<table style="width:100%; table-layout: fixed;" class="table table-hover">
+        <tr>
+                <th colspan="2">Receptor</th>
+                <th colspan="2">Ligand</th>
+		<th colspan="2">Source</th>
+        </tr>
+        <tr>
+                <td colspan="2"><a href={% url 'web-receptor-detail' receptor_id=act.receptor_id %}>{{receptor_dict|lookup_receptor:act.receptor_id}}</a></td>
+                <td colspan="2"><a href={% url 'web-ligand-detail' ligand_id=act.ligand_id %}><img src="/static/web/inchi/ligand_{{act.ligand_id}}.png" class="zoom2" height="100" width="100"></a></td>
+		<td colspan="2"><a href={% url 'web-source-detail' source_id=act.source_id %}>{{source_dict|lookup_source:act.source_id}}</a></td>
+        </tr>
+        <tr>
+                <th colspan="6">{{act.type}} {{act.relation}} {{act.value}} {{act.unit}}</td>
+        </tr>
+        <tr>
+                <td colspan="3">p-chembl</td>
+                <td colspan="3">{{act.p_chembl}}</td>
+        </tr>
+        <tr>
+                <td colspan="3">Confidence score</td>
+                <td colspan="3">{{act.confidence_score}}</td>
+        </tr>
+        <tr>
+                <td colspan="3">pH</td>
+                <td colspan="3">{{act.ph}}</td>
+        </tr>
+	<tr>
+                <td colspan="3">Temperature</td>
+                <td colspan="3">{{act.temperature}}</td>
+        </tr>
+	<tr>
+                <td colspan="3">Source database(s)</td>
+                <td colspan="3">{{act.source_db}}</td>
+        </tr>
+        </table>
+
+<!--Helping window-->
+<input type="image" style="position:absolute;top:10px;right:10px"src="/static/web/help.jpeg" width="30" height="30" onclick="return false;" data-toggle="modal" data-target="#exampleModalLong">
+<div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-body">
+	<iframe src="{% url 'web-activity_detail_help' %}" width="100%" height="500px" frameBorder="0"></iframe>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+<!--End of the helping window-->
+
+{% endblock content %}
+

@@ -1,0 +1,52 @@
+{% extends "web/base.html" %}
+{% block content %}
+	<h2 class="header">Detail of ligand</h2>
+	<div class="row" style="margin:1%">
+		<div class="col-3 align-self-center">
+			<img src="/static/web/inchi/ligand_{{lig.ligand_id}}.png" style="vertical-align:middle; text-align:center">
+		</div>
+		<div class="col-9 align-self-center">
+				<h3>{{lig.inchi}}</h3>
+		</div>
+	</div>
+	<table style="width:100%" class="table table-hover">
+        <tr>
+                <td>Inchi key</td>
+                <td>{{lig.inchi_key}}</td>
+        </tr>
+        <tr>
+                <td>Inchi from Chembl</td>
+                <td>{{lig.inchi_chembl}}</td>
+        </tr>
+        <tr>
+                <td>Inchi from BindingDB</td>
+                <td>{{lig.inchi_bdb}}</td>
+        </tr>
+        <tr>
+                <td>Smiles</td>
+                <td>{{lig.smiles}}</td>
+        </tr>
+        <tr>
+                <td>Is without metals?<br>(Only C, H, O, N, S, P, F, Cl, Br, I)</td>
+                <td>{{lig.no_metal}}</td>
+        </tr>
+        </table>
+
+<!--Helping window-->
+<input type="image" style="position:absolute;top:10px;right:10px"src="/static/web/help.jpeg" width="30" height="30" onclick="return false;" data-toggle="modal" data-target="#exampleModalLong">
+<div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-body">
+	<iframe src="{% url 'web-ligand_detail_help' %}" width="100%" height="500px" frameBorder="0"></iframe>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+<!--End of the helping window-->
+
+{% endblock content %}
+

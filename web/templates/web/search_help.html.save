@@ -1,0 +1,231 @@
+{% extends "web/base_help.html" %}
+{% block content%}
+<script>
+function search_help_receptor() {
+	x = document.getElementById("search_help_receptor")
+	if (x.style.display == "none"){
+		search_help_close();
+		x.style.display = "block";	
+	}else{
+		x.style.display = "none";
+	}   
+}
+function search_help_ligand() {
+        x = document.getElementById("search_help_ligand")
+        if (x.style.display == "none"){
+		search_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function search_help_physical_quantity() {
+        x = document.getElementById("search_help_physical_quantity")
+        if (x.style.display == "none"){
+                search_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function search_help_value() {
+        x = document.getElementById("search_help_value")
+        if (x.style.display == "none"){
+                search_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function search_help_confidence_score() {
+        x = document.getElementById("search_help_confidence_score")
+        if (x.style.display == "none"){
+                search_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function search_help_no_metals() {
+        x = document.getElementById("search_help_no_metals")
+        if (x.style.display == "none"){
+                search_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function search_help_close(){
+	document.getElementById("search_help_receptor").style.display = "none";
+	document.getElementById("search_help_ligand").style.display = "none";
+	document.getElementById("search_help_physical_quantity").style.display = "none";
+	document.getElementById("search_help_value").style.display = "none";
+	document.getElementById("search_help_confidence_score").style.display = "none";
+	document.getElementById("search_help_no_metals").style.display = "none";
+}
+</script>
+<div style="text-align:center;">
+<h4>This is how your search page should look like.</h4>
+</div>
+
+
+
+
+<div class="container-fluid">
+<div class="row">
+	<div class="col-5">
+		<img src="/static/web/about/search/receptor.jpg" onclick="search_help_receptor()" width="100%">
+	</div>
+	<div class="col-7">
+		<img src="/static/web/about/search/ligand_exact.jpg" onclick="search_help_ligand()" width="100%">
+	</div>
+</div>
+<div class="bg-light" id="search_help_receptor" style="display:none;">
+	<h6>Receptor</h6>
+	<p>It is possible to select one or more receptors. To select/deselect more receptors hold the CTRL key.</p>
+	<p>If no receptors are selected by hand, the database will automatically search for all the receptors.</p>   
+</div>
+<div class="bg-light" id="search_help_ligand" style="display:none;">
+	<h6>Ligand</h6>
+	<p>Ligands can be searched using SMILES or InChI. SMILES must follow the rules for <a href="https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system" target="_blank">SMILES format</a>. InChI must follow the rules for <a href="https://en.wikipedia.org/wiki/International_Chemical_Identifier" target="_blank">InChi format</a>.</p>
+	<p>It is possible to draw a ligand using Ketcher. Ketcher will appear automatically after click on "Show/Hide sKetcher" button. It is possible to hide Ketcher after click on "Show/Hide sKetcher" button again.<br>When Ketcher is appeared, it is necessarry to follow the following rules:
+		<ol>
+                <li>Draw your ligand</li>
+                <li>Click the Save button (the image of floppy disk)</li>
+                <li>Check SMILES of your ligand</li>
+                <li>Click the "Apply" button to copy the SMILES into the form</li>
+                </ol>
+	The SMILES will be applied to the form into the ligand search bar. The drawn ligand, that is not saved into the ligand search bar, will NOT be used. The data will be searched using the data from ligand search bar only, no matter what is drawn in the Ketcher, since it is not applied!  
+	   
+	<p>If no ligand is written, the database will automatically search for all the ligands.</p>
+	<p>It is possible to use either with exact search or similarity search. In case of similarity search, a search bar for Tanimoto coefficient will appear.
+	<img class="rounded mx-auto d-block" src="/static/web/about/search/ligand_similar.jpg" width="60%">
+	The higher Tanimoto is, the more similar ligands will be searched. Morgan fingerprint is used for making pringerprints. 	
+	</p>   
+</div>
+
+
+
+
+<img src="/static/web/about/search/break.jpg" width="100%">
+<div class="row">
+        <div class="col-4">
+                <img src="/static/web/about/search/physical_quantity.jpg" onclick="search_help_physical_quantity()" width="100%">
+        </div>
+        <div class="col-8">
+                <img src="/static/web/about/search/is_any.jpg" onclick="search_help_value()" width="100%">
+        </div>
+</div>
+<div class="bg-light" id="search_help_physical_quantity" style="display:none;">
+	<h6>Physical quantity</h6>
+	<p>It is possible to select one or more physical quantities. To select/deselect more physical quantities hold the CTRL key.</p>
+	<p>If no physical quantities are selected by hand, the database will automatically search for all the physical quantities.</p>
+</div>
+<div class="bg-light" id="search_help_value" style="display:none;">
+	<h6>Value</h6>
+	<ol type="A">
+	<li> <b>Option "any":</b>
+		<p>In this case,  the database will automatically search for all the values.</p>
+	</li>
+	<li> <b>Options "equal to", "greater than", "less than":</b>
+                <p>In these cases, a search bar for value and pCHEMBL converter will appear.
+		<img class="rounded mx-auto d-block" src="/static/web/about/search/is_equal.jpg" width="60%">
+		<p>It is possible to search any number. In case of decimal, it is NECESSARY to use dot as a decimal point. Comma CANNOT be used eather as decimal or thousand separator.</p>  
+		<p>
+		If the "equal to" option is chosen, the database will search for physical quantities equal to the selected value in nanomole.<br>
+		If the "greater than" option is chosen, the database will search for physical quantities greater than the selected value in nanomole.<br>
+		If the "less than" option is chosen, the database will search for physical quantities less than the selected value in nanomole.<br> 
+		</p>
+		<p>It is possible to use pCHEMBL to nanomole value convertor instead of value search bar. pChEMBL is defined as: -Log(molar IC50, EC50, Ki or Kd). The converted value will be automatically written into the value search bar.<br>In case of decimal pCHEMBL, it is NECESSARY to use dot as a decimal point. Comma CANNOT be used eather as decimal or thousand separator.</p> 
+        </li>
+	 <li> <b>Option "between":</b>
+                <p>In this case, search bars for both value and pCHEMBL converters will appear.</p>
+		<img class="rounded mx-auto d-block" src="/static/web/about/search/is_between.jpg" width="60%">
+		<p>It is possible to search any numbers. In case of decimal, it is NECESSARY to use dot as a decimal point. Comma CANNOT be used eather as decimal or thousand separator.</p>
+		<p>In this option, The database will search for physical quantities between the first selected and the second selected value in nanomole.</p>
+		<p>It is possible to use pCHEMBL to nanomole value convertors instead of value search bars. pChEMBL is defined as: -Log(molar IC50, EC50, Ki or Kd). The converted values will be automatically written into the value search bars.<br> In case of decimal pCHEMBL, it is NECESSARY to use dot as a decimal point. Comma CANNOT be used eather as decimal or thousand separator.</p> 
+        </li>
+	</ol>
+</div>
+
+
+<img src="/static/web/about/search/break.jpg" width="100%">
+<div class="row">
+        <div class="col-3">
+                <img src="/static/web/about/search/confidence_score.jpg" onclick="search_help_confidence_score()" width="100%">
+        </div>
+        <div class="col-9">
+		<br>
+                <img src="/static/web/about/search/no_metals.jpg" onclick="search_help_no_metals()" width="100%">
+        </div>
+</div>
+
+
+<div class="bg-light" id="search_help_confidence_score" style="display:none;">
+        <h6>Confidence score</h6>
+	<p>A CHEMBL confidence score value can be described with the following table:
+	<table>
+	<tr>
+		<th>Confidence score</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>0</td>
+		<td>Default value - Target assignment has yet to be curated</td>
+	</tr>
+	<tr>
+                <td>1</td>
+                <td></td>
+Target assigned is non-molecular        </tr>
+        <tr>
+                <td>2</td>
+                <td>Default value - Target assignment has yet to be curated</td>
+        </tr>
+        <tr>
+                <td>3</td>
+                <td>Default value - Target assignment has yet to be curated</td>
+        </tr>
+        <tr>
+                <td>4</td>
+                <td>Default value - Target assignment has yet to be curated</td>
+        </tr>
+        <tr>
+                <td>5</td>
+                <td>Default value - Target assignment has yet to be curated</td>
+        </tr>
+        <tr>
+                <td>6</td>
+                <td>Default value - Target assignment has yet to be curated</td>
+        </tr>
+        <tr>
+                <td>7</td>
+                <td>Default value - Target assignment has yet to be curated</td>
+        </tr>
+        <tr>
+                <td>8</td>
+                <td>Default value - Target assignment has yet to be curated</td>
+        </tr>
+        <tr>
+                <td>9</td>
+                <td>Default value - Target assignment has yet to be curated</td>
+        </tr>
+	<p>If no confidence scores are selected by hand, the database will automatically search for all the confidence scores (Unknown included).</p>
+</div>
+<div class="bg-light" id="search_help_no_metals" style="display:none;">
+        <h6>Metals/Semimetals problem</h6>
+	<p>Since the ligands with some specific elements, such as metals or semimetals, can be troublesome, it is possible to exclude these ligands in search.<br>If this possibility is checked, the database will search ligands with the following elements only: carbon, hydrogen, oxygen, nitrogen, sulfur, phosphorus, fluorine, chlorine, bromine and iodine.
+</div>
+
+
+
+<img src="/static/web/about/search/break.jpg" width="100%">
+<div class="row">
+        <div class="col">
+                <img src="/static/web/about/search/source.jpg" width="100%">
+        </div>
+</div>
+</div>
+
+{% endblock content %}
+
+

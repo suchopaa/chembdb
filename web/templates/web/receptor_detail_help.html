@@ -1,0 +1,50 @@
+{% extends "web/base_help.html" %}
+{% block content%}
+<h5>About the detail of receptor</h5>
+<p>In the detail of receptor, further information, such as trivial names or Chembl ID number, are listed.
+</p>
+<p>
+This is what the detail of receptor should look like.
+</p>
+<div class="container-fluid">
+<div class="row">
+        <div class="col">
+                <img src="/static/web/about/details/receptor_screen_of_all.jpg" width="100%">
+        </div>
+</div>
+<hr>
+<div  id="receptor_detail_help_table">
+<p>Individual values, numbers, and characters will be described using example above in the following table:</p>
+<table class="table table-hover">
+<tr>
+        <td>P10827</td>
+        <td>The Uniprot ID of receptor. Click the ID to open the Uniprot web page with the current receptor.</td>
+</tr>
+<tr>
+        <td>Thyroid hormone receptor alpha</td>
+        <td>The Uniprot name of receptor.</td>
+</tr>
+<tr>
+        <td>THA_HUMAN</td>
+        <td>The Uniprot short name of receptor. It is another way to find the receptor in Uniprot and other databases.</td>
+</tr>
+<tr>
+        <td>TRα; c-erbA-1; THRA</td>
+        <td>Any other names that can the receptor have.</td>
+</tr>
+<tr>
+        <td>Thyroid hormone receptor alpha</td>
+        <td>A full name of the receptor</td>
+</tr>
+<tr>
+        <td>NR1A1</td>
+        <td>Short form of receptor in a family (nomenclature) of nuclear receptors.</td>
+</tr>
+<tr>
+        <td>CHEMBL1860</td>
+        <td>The Chembl ID of receptor. Click the ID to open the Chembl web page with the current receptor.</td>
+</tr>
+</table>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,52 @@
+{% extends "web/base.html" %}
+{% block content %}
+	<h2 class="header">Detail of receptor</h2>
+	<table style="width:100%" class="table table-hover">
+	<tr>
+    		<th>Uniprot ID</th>
+    		<th><a href='https://www.uniprot.org/uniprot/{{rec.uniprot_id}}' target="_blank">{{rec.uniprot_id}}</a></th> 
+	</tr>
+	<tr>
+    		<td>Uniprot name</td>
+    		<td>{{rec.uniprot_name}}</td> 
+	</tr>
+	<tr>
+                <td>Uniprot short name</td>
+                <td>{{rec.uniprot_short_name}}</td>
+        </tr>
+	<tr>
+                <td>Another trivial names</td>
+                <td>{{rec.trivial_names}}</td>
+        </tr>
+	<tr>
+                <td>Full name</td>
+                <td>{{rec.full_names}}</td>
+        </tr>
+	<tr>
+                <td>Short receptor form</td>
+                <td>{{rec.short_nr}}</td>
+        </tr>
+	<tr>
+                <td>Chembl ID number</td>
+                <td><a href='https://www.ebi.ac.uk/chembl/target_report_card/{{rec.chembl_number}}' target="_blank">{{rec.chembl_number}}</td>
+        </tr>
+	</table>
+
+<!--Helping window-->
+<input type="image" style="position:absolute;top:10px;right:10px"src="/static/web/help.jpeg" width="30" height="30" onclick="return false;" data-toggle="modal" data-target="#exampleModalLong">
+<div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-body">
+	<iframe src="{% url 'web-receptor_detail_help' %}" width="100%" height="500px" frameBorder="0"></iframe>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+<!--End of the helping window-->
+
+{% endblock content %}
+

@@ -1,0 +1,128 @@
+{% extends "web/base_help.html" %}
+{% block content%}
+<script>
+function activity_list_help_number() {
+        x = document.getElementById("activity_list_help_number")
+        if (x.style.display == "none"){
+                activity_list_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function activity_list_help_table() {
+        x = document.getElementById("activity_list_help_table")
+        if (x.style.display == "none"){
+                activity_list_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function activity_list_help_export() {
+        x = document.getElementById("activity_list_help_export")
+        if (x.style.display == "none"){
+                activity_list_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function activity_list_help_close(){
+        document.getElementById("activity_list_help_number").style.display = "none";
+        document.getElementById("activity_list_help_table").style.display = "none";
+        document.getElementById("activity_list_help_export").style.display = "none";
+}
+</script>
+<h5>About the list of activities</h5>
+<p>This is the list of activities that works either as results of the search form or as a list of all activities.
+</p>
+<p>
+This is what the list of activites should look like.<br>
+Depending on the user settings of the search form, the Tanimoto coefficient is present (either "0-1" or empty). In case of the list of all activities, Tanimoto is ommited. 
+</p>
+<div class="container-fluid">
+<div class="row">
+        <div class="col">
+                <img src="/static/web/about/activity_list/screen_of_all.jpg" width="100%">
+	</div>
+</div>
+<br>
+<hr>
+<h6 onclick="activity_list_help_number()" style="cursor:pointer">Number of records and pages</h6>
+<div class="bg-light" id="activity_list_help_number" style="display:none">
+<p>In the top left corner, there is a number of all records. In case of 0 records, the information about the number of records is red.</p>
+<p>Above and below the table, there is a current page number and a number of all pages. The maximum of records per page is 30.<br>
+In case of more pages, the buttons "first", "previous", "next", and "last" will appear.
+</p>
+</div>
+<hr>
+<h6 onclick="activity_list_help_table()" style="cursor:pointer">Table of activities</h6>
+<div class="bg-light" id="activity_list_help_table" style="display:none">
+<p>Individual records, numbers, and characters are described using the example above in the following table:</p>
+<table class="table table-hover">
+<tr>
+	<td><input type="checkbox"></td>
+	<td>Checkbox for the export selection of this record (more information about an export below). The checkbox in the header line will select every record of the current page.</td>
+</tr>
+<tr>
+	<td>Estrogen receptor</td>
+	<td>The Uniprot name of receptor. To open the "Detail of receptor" page, click the name of the receptor.</td>
+</tr>
+<tr>
+	<td><img src="/static/web/about/activity_list/ligand_example.png" width="40%"></td>
+	<td>The picture of ligand. To make the picture bigger, hover the cursor on the picture. To open the "Detail of ligand" page, click the picture.</td>
+</tr>
+<tr>
+	<td>1.0</td>
+	<td>The Tanimoto coefficient (if available). To get more information about the Tanimoto coefficient, see "About the search form" section.</td>
+</tr>
+<tr>
+	<td>Unknown source</td>
+	<td>The DOI of source where the record originally come from. If the source is not available, there will be an "Unknown source" instead of the DOI. To open the "Detail of source" page, click the DOI of source.</td>
+</tr>
+<tr>
+	<td>IC50</td>
+	<td>The physical quantity of activity record.</td>
+</tr>
+<tr>
+	<td>=</td>
+	<td>The relation (can be "<", ">", "=", etc.).</td>
+</tr>
+<tr>
+	<td>80.0</td>
+	<td>The value of activity record.</td>
+</tr>
+<tr>
+	<td>nM</td>
+	<td>The unit (mostly nM).</td>
+</tr>
+<tr>
+	<td>Chembl</td>
+	<td>The source database (or databases, in case the record is available in more than one).</td>
+</tr>
+<tr>
+	<td>Details</td>
+	<td>Click the "Details" to get more information about the activity record, such as temperature or pH.</td>
+</tr>
+<tr>
+	<td><img src="/static/web/sort.png" width="20px" height="20px"></td>
+	<td>Click to sort the records according to the specific column. The first click will sort ascendingly (A-Z, 1-9), the second one descendingly (Z-A, 9-1). 
+</tr>
+</table>
+</div>
+<hr>
+<h6 onclick="activity_list_help_export()" style="cursor:pointer">Export</h6>
+<div class="bg-light" id="activity_list_help_export" style="display:none">
+<ul>
+	<li><b>Export selected to .csv</b><br>
+	This button will export every checked (selected) record on the current page to .csv file.	
+	</li>
+	<li><b>Export all to .csv</b><br>
+	This button will export all records to .csv file.
+	</li>
+</ul>
+<p>The name of the export file follows given template: "export_data__YYYY_MM_DD__HH_MM_SS.csv".<br>The time is set according to the actual UTC time.</p> 
+</div>
+</div>
+{% endblock content %}

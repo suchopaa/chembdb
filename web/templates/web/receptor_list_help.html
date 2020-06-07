@@ -1,0 +1,71 @@
+{% extends "web/base_help.html" %}
+{% block content%}
+<script>
+function receptor_list_help_number() {
+        x = document.getElementById("receptor_list_help_number")
+        if (x.style.display == "none"){
+                receptor_list_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function receptor_list_help_table() {
+        x = document.getElementById("receptor_list_help_table")
+        if (x.style.display == "none"){
+                receptor_list_help_close();
+                x.style.display = "block";
+        }else{
+                x.style.display = "none";
+        }
+}
+function receptor_list_help_close(){
+        document.getElementById("receptor_list_help_number").style.display = "none";
+	document.getElementById("receptor_list_help_table").style.display = "none";
+}
+</script>
+<h5>About the list of receptors</h5>
+<p>This is the list of all receptors.
+</p>
+<p>
+This is what the list of all receptors should look like.
+</p>
+<div class="container-fluid">
+<div class="row">
+        <div class="col">
+                <img src="/static/web/about/receptor_list/screen_of_all.jpg" width="100%">
+        </div>
+</div>
+<br>
+<hr>
+<h6 onclick="receptor_list_help_number()" style="cursor:pointer">Number of records and pages</h6>
+<div class="bg-light" id="receptor_list_help_number" style="display:none">
+<p>In the top left corner, there is a number of all receptors. In case of 0 receptors, the information about the number of receptors is red.</p>
+<p>Above and below the table, there is a current page number and a number of all pages. The maximum of receptors per page is 30.<br>
+In case of more pages, the buttons "first", "previous", "next", and "last" will appear.
+</p>
+</div>
+<hr>
+<h6 onclick="receptor_list_help_table()" style="cursor:pointer">Table of all receptors</h6>
+<div class="bg-light" id="receptor_list_help_table" style="display:none">
+<p>Individual receptors, numbers, and characters will be described using the example above in the following table:</p>
+<table class="table table-hover">
+<tr>
+        <td>1</td>
+        <td>The ID of receptor that was created to ease the orientation on the webside.</td>
+</tr>
+<tr>
+        <td>P10827</td>
+        <td>The Uniprot ID of receptor. Click the ID to open the Uniprot web page with the current receptor.</td>
+</tr>
+<tr>
+        <td>Thyroid hormone receptor alpha</td>
+        <td>The Uniprot name of receptor.</td>
+</tr>
+<tr>
+        <td>Details</td>
+        <td>Click the "Details" to get more information about the receptor, such as Chembl ID number.</td>
+</tr>
+</table>
+</div>
+{% endblock content %}
