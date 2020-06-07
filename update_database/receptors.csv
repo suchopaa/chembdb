@@ -1,0 +1,48 @@
+﻿1,P10827,Thyroid hormone receptor alpha,THA_HUMAN,TRα; c-erbA-1; THRA,Thyroid hormone receptor alpha,NR1A1,CHEMBL1860
+2,P10828,Thyroid hormone receptor beta,THB_HUMAN,TRβ; c-erbA-2; THRB,Thyroid hormone receptor beta-1,NR1A2,CHEMBL1947
+3,P10276,Retinoic acid receptor alpha,RARA_HUMAN,RARα,Retinoic acid receptor alpha,NR1B1,CHEMBL2055
+4,P10826,Retinoic acid receptor beta,RARB_HUMAN,RARβ; HAP,Retinoic acid receptor beta,NR1B2,CHEMBL2008
+5,P13631,Retinoic acid receptor gamma,RARG_HUMAN,RARγ; RARD,Retinoic acid receptor gamma,NR1B3,CHEMBL2003
+6,Q07869,Peroxisome proliferator-activated receptor alpha,PPARA_HUMAN,PPARα,Peroxisome proliferator-activated receptor alpha,NR1C1,CHEMBL239
+7,Q03181,Peroxisome proliferator-activated receptor delta,PPARD_HUMAN,PPARβ; NUC1; PPARδ; FAAR,Peroxisome proliferator-activated receptor delta,NR1C2,CHEMBL3979
+8,P37231,Peroxisome proliferator-activated receptor gamma,PPARG_HUMAN,PPARγ,Peroxisome proliferator-activated receptor gamma,NR1C3,CHEMBL235
+9,P20393,Nuclear receptor subfamily 1 group D member 1,NR1D1_HUMAN,REVERBα; EAR1; EAR1A,Nuclear receptor subfamily 1 group D member 1,NR1D1,CHEMBL1961783
+10,Q14995,Nuclear receptor subfamily 1 group D member 2,NR1D2_HUMAN,REVERBβ; EAR1β; BD73; RVR; HZF2,Nuclear receptor subfamily 1 group D member 2,NR1D2,CHEMBL1961784
+11,P35398,Nuclear receptor ROR-alpha,RORA_HUMAN,RORα; RZRα,Nuclear receptor ROR-alpha,NR1F1,CHEMBL5868
+12,Q92753,Nuclear receptor ROR-beta,RORB_HUMAN,RORβ; RZRβ,Nuclear receptor ROR-beta,NR1F2,CHEMBL3091268
+13,P51449,Nuclear receptor ROR-gamma,RORG_HUMAN,RORγ; TOR,Nuclear receptor ROR-gamma,NR1F3,CHEMBL1741186
+14,P55055,Oxysterols receptor LXR-beta,NR1H2_HUMAN,UR; OR-1; NER1; RIP15; LXRβ,LXR-beta,NR1H2,CHEMBL4093
+15,Q13133,Oxysterols receptor LXR-alpha,NR1H3_HUMAN,RLD1; LXR; LXRα,LXR-alpha,NR1H3,CHEMBL2808
+16,Q96RI1,Bile acid receptor,NR1H4_HUMAN,FXR; RIP14; HRR1,Bile acid receptor FXR,NR1H4,CHEMBL2047
+17,P11473,Vitamin D3 receptor,VDR_HUMAN,VDR,Vitamin D receptor,NR1I1,CHEMBL1977
+18,O75469,Nuclear receptor subfamily 1 group I member 2,NR1I2_HUMAN,ONR1; PXR; SXR; BXR,Pregnane X receptor,NR1I2,CHEMBL3401
+19,Q14994,Nuclear receptor subfamily 1 group I member 3,NR1I3_HUMAN,MB67; CAR1; CARα,Nuclear receptor subfamily 1 group I member 3,NR1I3,CHEMBL5503
+20,P41235,Hepatocyte nuclear factor 4-alpha,HNF4A_HUMAN,HNF4,Hepatocyte nuclear factor 4-alpha,NR2A1,CHEMBL5398
+21,Q14541,Hepatocyte nuclear factor 4-gamma,HNF4G_HUMAN,HNF4G,Hepatocyte nuclear factor 4-gamma,NR2A2,CHEMBL1961786
+22,P19793,Retinoic acid receptor RXR-alpha,RXRA_HUMAN,RXRA,Retinoid X receptor alpha,NR2B1,CHEMBL2061
+23,P28702,Retinoic acid receptor RXR-beta,RXRB_HUMAN,RXRB; H-2RIIBP; RCoR-1,Retinoid X receptor beta,NR2B2,CHEMBL1870
+24,P48443,Retinoic acid receptor RXR-gamma,RXRG_HUMAN,RXRG,Retinoid X receptor gamma,NR2B3,CHEMBL2004
+25,P13056,Nuclear receptor subfamily 2 group C member 1,NR2C1_HUMAN,TR2; TR2-11,Nuclear receptor subfamily 2 group C member 1,NR2C1,CHEMBL1961787
+26,P49116,Nuclear receptor subfamily 2 group C member 2,NR2C2_HUMAN,TR4; TAK1,Nuclear receptor subfamily 2 group C member 2,NR2C2,CHEMBL5716
+27,Q9Y466,Nuclear receptor subfamily 2 group E member 1,NR2E1_HUMAN,TLL; TLX; XTLL,Nuclear receptor subfamily 2 group E member 1,NR2E1,CHEMBL1961788
+28,Q9Y5X4,Photoreceptor-specific nuclear receptor,NR2E3_HUMAN,PNR; RNR,Retina-specific nuclear receptor,NR2E3,CHEMBL4374
+29,P10589,COUP transcription factor 1,COT1_HUMAN,COUP-TFI; COUPTFA; EAR3; SVP44,COUP transcription factor 1,NR2F1,CHEMBL1961789
+30,P24468,COUP transcription factor 2,COT2_HUMAN,COUP-TFII; COUPTFB; ARP1; SVP40,COUP transcription factor 2,NR2F2,CHEMBL1961790
+31,P10588,Nuclear receptor subfamily 2 group F member 6,NR2F6_HUMAN,EAR2,Nuclear receptor subfamily 2 group F member 6,NR2F6,CHEMBL1961791
+32,P03372,Estrogen receptor,ESR1_HUMAN,ERα,Estrogen receptor alpha,NR3A1,CHEMBL206
+33,Q92731,Estrogen receptor beta,ESR2_HUMAN,ERβ,Estrogen receptor beta,NR3A2,CHEMBL242
+34,P11474,Steroid hormone receptor ERR1,ERR1_HUMAN,ERR1; ERRα,Estrogen-related receptor alpha,NR3B1,CHEMBL3429
+35,O95718,Steroid hormone receptor ERR2,ERR2_HUMAN,ERR2; ERRβ,Estrogen-related receptor beta,NR3B2,CHEMBL3751
+36,P62508,Estrogen-related receptor gamma,ERR3_HUMAN,ESRRG; ERR3; ERRG2; KIAA0832,Estrogen-related receptor gamma,NR3B3,CHEMBL4245
+37,P04150,Glucocorticoid receptor,GCR_HUMAN,GR,Glucocorticoid receptor,NR3C1,CHEMBL2034
+38,P08235,Mineralocorticoid receptor,MCR_HUMAN,MR,Mineralocorticoid receptor,NR3C2,CHEMBL1994
+39,P06401,Progesterone receptor,PRGR_HUMAN,PR,Progesterone receptor,NR3C3,CHEMBL208
+40,P10275,Androgen receptor,ANDR_HUMAN,AR,Androgen Receptor,NR3C4,CHEMBL1871
+41,P22736,Nuclear receptor subfamily 4 group A member 1,NR4A1_HUMAN,NGFIB; TR3; N10; NUR77; NAK1,Nuclear receptor subfamily 4 group A member 1,NR4A1,CHEMBL1293229
+42,P43354,Nuclear receptor subfamily 4 group A member 2,NR4A2_HUMAN,NURR1; NOT; RNR1; HZF-3; TINOR,Nuclear receptor subfamily 4 group A member 2,NR4A2,CHEMBL5002
+43,Q92570,Nuclear receptor subfamily 4 group A member 3,NR4A3_HUMAN,NOR1; MINOR,Nuclear receptor subfamily 4 group A member 3,NR4A3,CHEMBL1961792
+44,Q13285,Steroidogenic factor 1,STF1_HUMAN,SF1; ELP; FTZ-F1; AD4BP,Steroidogenic factor 1,NR5A1,CHEMBL4666
+45,O00482,Nuclear receptor subfamily 5 group A member 2,NR5A2_HUMAN,LRH1; xFF1rA; xFF1rB; FFLR; PHR; FTF,Orphan nuclear receptor LRH-1,NR5A2,CHEMBL3544
+46,Q15406,Nuclear receptor subfamily 6 group A member 1,NR6A1_HUMAN,GCNF1; RTR,Nuclear receptor subfamily 6 group A member 1,NR6A1,CHEMBL1961793
+47,P51843,Nuclear receptor subfamily 0 group B member 1,NR0B1_HUMAN,DAX1; AHCH,Nuclear receptor subfamily 0 group B member 1,NR0B1,CHEMBL1795094
+48,Q15466,Nuclear receptor subfamily 0 group B member 2,NR0B2_HUMAN,SHP,Nuclear receptor subfamily 0 group B member 2,NR0B2,CHEMBL5603
